@@ -8,6 +8,14 @@ Install [Meteor](https://www.meteor.com/install)
 
 # Usage
 
+First install:
+
+```shell
+git clone git@github.com:rafaelhdr/meteor-wall.git
+cd meteor-wall/
+meteor npm install
+```
+
 Run: `meteor`
 
 Web tests: `meteor npm test`
