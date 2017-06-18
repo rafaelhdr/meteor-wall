@@ -19,5 +19,6 @@ shell-server@0.2.3            # Server-side component of the `meteor shell` comm
 
 practicalmeteor:mocha
 accounts-password
-accounts-ui
 xolvio:cleaner
+twbs:bootstrap
+ian:accounts-ui-bootstrap-3

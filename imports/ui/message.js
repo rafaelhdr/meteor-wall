@@ -1,7 +1,19 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session'
 
 import './message.html'
+
+Template.body.onCreated(function bodyOnCreated() {
+  Session.set('alertMessageSent', false);
+});
+
+Template.messageInsert.helpers({
+  alertMessageSent() {
+    Session.setDefault('alertMessageSent', false);
+    return Session.get('alertMessageSent');
+  }
+});
 
 Template.messageInsert.events({
   'submit form.messageInsert'(event) {
@@ -14,6 +26,9 @@ Template.messageInsert.events({
 
     target.message.value = '';
 
-    alert('Message was sent!');
+    Session.set('alertMessageSent', true);
+    Meteor.setInterval(function() {
+      Session.set('alertMessageSent', false);
+    }, 5000);
   },
 });

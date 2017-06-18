@@ -2,8 +2,14 @@
   <h2>Send a message</h2>
 
   <form class="messageInsert">
-    <label for="message">Message:</label>
-    <textarea name="message"></textarea>
-    <button type="submit">Submit</button>
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea name="message" class="form-control" rows="3"></textarea>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
   </form>
+
+  {{#if alertMessageSent}}
+    <div class="alert alert-success" role="alert">Message sent!</div>
+  {{/if}}
 </template>
