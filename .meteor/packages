@@ -22,3 +22,4 @@ accounts-password
 xolvio:cleaner
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
+dispatch:mocha
