@@ -10,7 +10,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'message.insert'(message) {
+  'messages.insert'(message) {
     check(message, String);
 
     if (! Meteor.userId()) {
@@ -22,5 +22,5 @@ Meteor.methods({
       message: message,
       createdAt: new Date(),
     });
-  }
+  },
 })

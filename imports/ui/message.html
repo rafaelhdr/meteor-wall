@@ -31,5 +31,14 @@
 </template>
 
 <template name="message">
-  <p><strong>{{formatDate createdAt}}:</strong> {{message}}</p>
+  <p>
+    <strong>{{formatDate createdAt}}:</strong>
+    {{message}}
+    {{#if isOwner}}
+      <button type="button" class="btn btn-danger btn-xs delete">
+        <span class="glyphicon glyphicon-remove"></span>
+        Remove
+      </button>
+    {{/if}}
+  </p>
 </template>

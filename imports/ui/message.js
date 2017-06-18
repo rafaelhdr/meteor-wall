@@ -25,7 +25,7 @@ Template.messageInsert.events({
     var target = event.target;
     var message = target.message.value;
 
-    Meteor.call('message.insert', message);
+    Meteor.call('messages.insert', message);
 
     target.message.value = '';
 
@@ -53,5 +53,14 @@ Template.message.helpers({
     var hours = date.getHours();
 
     return day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
-  }
+  },
+  isOwner() {
+    return this.owner === Meteor.userId();
+  },
+})
+
+Template.message.events({
+  'click .delete'() {
+    Meteor.call('messages.remove', this._id);
+  },
 })

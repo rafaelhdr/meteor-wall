@@ -25,6 +25,12 @@ MockUsersClass = function() {
     }
   }
 
+  this.loginDifferentUser = () => {
+    Meteor.userId = () => {
+      return Random.id();
+    }
+  }
+
   this.reset = () => {
     Meteor.userId = defaultUserId;
   }
