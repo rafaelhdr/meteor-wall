@@ -3,6 +3,12 @@ import { check } from 'meteor/check';
 
 export const Messages = new Mongo.Collection('messages');
 
+if (Meteor.isServer) {
+  Meteor.publish('messages', function messages() {
+    return Messages.find();
+  });
+}
+
 Meteor.methods({
   'message.insert'(message) {
     check(message, String);
@@ -14,6 +20,7 @@ Meteor.methods({
     Messages.insert({
       owner: Meteor.userId(),
       message: message,
+      createdAt: new Date(),
     });
   }
 })

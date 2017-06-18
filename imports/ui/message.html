@@ -13,3 +13,23 @@
     <div class="alert alert-success" role="alert">Message sent!</div>
   {{/if}}
 </template>
+
+<template name="messages">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Messages</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    {{#each messages}}
+      <div class="col-xs-12">
+        {{> message}}
+      </div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="message">
+  <p><strong>{{formatDate createdAt}}:</strong> {{message}}</p>
+</template>

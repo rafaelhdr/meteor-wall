@@ -2,17 +2,20 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session'
 
+import { Messages } from '../api/messages.js';
 import './message.html'
 
-Template.body.onCreated(function bodyOnCreated() {
+
+Template.messageInsert.onCreated(function bodyOnCreated() {
   Session.set('alertMessageSent', false);
+  Meteor.subscribe('messages');
 });
 
 Template.messageInsert.helpers({
   alertMessageSent() {
     Session.setDefault('alertMessageSent', false);
     return Session.get('alertMessageSent');
-  }
+  },
 });
 
 Template.messageInsert.events({
@@ -32,3 +35,23 @@ Template.messageInsert.events({
     }, 5000);
   },
 });
+
+Template.messages.helpers({
+  messages() {
+    return Messages.find({}, { sort: { createdAt: -1 } });
+  },
+})
+
+Template.message.helpers({
+  formatDate(date) {
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+
+    var seconds = date.getSeconds();
+    var minutes = date.getMinutes();
+    var hours = date.getHours();
+
+    return day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+  }
+})
